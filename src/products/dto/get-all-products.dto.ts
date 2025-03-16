@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsNumber, IsOptional } from "class-validator";
+import { Transform, Type } from "class-transformer";
+import { IsBoolean, IsNumber, IsOptional, Min } from "class-validator";
 import { IProduct } from "src/_interfaces/product.interface";
 
 export class GetAllProductsDto {
@@ -27,4 +27,20 @@ export class GetAllProductsDto {
 	@IsNumber()
 	@Type(() => Number)
 	readonly maxPrice?: number;
+
+	@ApiProperty({ type: Boolean, example: false })
+	@IsOptional()
+	@IsBoolean()
+	@Transform(({ value }) => value === "true")
+	readonly featured?: boolean;
+
+	@ApiProperty({
+		type: Number,
+		example: 4,
+	})
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	@Type(() => Number)
+	readonly limit?: number;
 }

@@ -12,5 +12,6 @@ import { Review, ReviewSchema } from "src/_entities/review.entity";
 	],
 	controllers: [ProductsController],
 	providers: [ProductsService],
+	exports: [ProductsService],
 })
 export class ProductsModule {}

@@ -8,5 +8,5 @@ export interface IProduct {
 	numReviews: number;
 	imgUrls: string[];
 	description: string;
-	createdAt: string;
+	featured: boolean;
 }
