@@ -6,7 +6,7 @@ import {
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { InjectModel } from "@nestjs/mongoose";
-import { User } from "../_entities/user.entity";
+import { User } from "./entities/user.entity";
 import { Model } from "mongoose";
 import { compare } from "bcrypt";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
@@ -41,7 +41,9 @@ export class UsersService {
 
 		await user.save();
 
-		return { token: await this.authService.createAccessToken(user.id) };
+		return {
+			token: await this.authService.createAccessToken(user.id, user.role),
+		};
 	}
 
 	async create(name: string, email: string, password: string): Promise<User> {

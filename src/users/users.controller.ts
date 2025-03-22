@@ -15,6 +15,7 @@ import { ApiBearerAuth, ApiOperation } from "@nestjs/swagger";
 import { IRequest } from "src/_interfaces/request.interface";
 import { UpdateUserPasswordDto } from "./dto/update-user-password.dto";
 import { ProductsService } from "src/products/products.service";
+import { Roles } from "src/_decorators/roles.decorator";
 
 @Controller("users")
 @ApiBearerAuth("Authorization")
@@ -74,6 +75,7 @@ export class UsersController {
 	}
 
 	@Get()
+	@Roles("admin")
 	@ApiOperation({
 		summary: "Get all users (admin-only)",
 	})
@@ -82,6 +84,7 @@ export class UsersController {
 	}
 
 	@Post()
+	@Roles("admin")
 	@ApiOperation({
 		summary: "Create a new user (admin-only)",
 	})
@@ -91,6 +94,7 @@ export class UsersController {
 	}
 
 	@Get(":id")
+	@Roles("admin")
 	@ApiOperation({
 		summary: "Get a specific user (admin-only)",
 	})
@@ -99,6 +103,7 @@ export class UsersController {
 	}
 
 	@Patch(":id")
+	@Roles("admin")
 	@ApiOperation({
 		summary: "Update a specific user (admin-only)",
 	})
@@ -110,6 +115,7 @@ export class UsersController {
 	}
 
 	@Delete(":id")
+	@Roles("admin")
 	@ApiOperation({
 		summary: "Remove a specific user (admin-only)",
 	})

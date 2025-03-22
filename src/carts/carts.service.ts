@@ -3,7 +3,7 @@ import { InjectModel } from "@nestjs/mongoose";
 
 import mongoose, { Model } from "mongoose";
 
-import { Cart } from "src/_entities/cart.entity";
+import { Cart } from "src/carts/entities/cart.entity";
 import { AddCartItemDto } from "./dto/add-cart-item.dto";
 
 @Injectable()

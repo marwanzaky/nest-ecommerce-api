@@ -1,6 +1,8 @@
+export type UserRole = "user" | "admin";
+
 export interface IUser {
 	_id: string;
-	role: "user" | "admin";
+	role: UserRole;
 
 	/**
 	 * User's full name

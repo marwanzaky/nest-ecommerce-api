@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory, Virtual } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import { IProduct } from "src/_interfaces/product.interface";
-import { User } from "./user.entity";
+import { User } from "src/users/entities/user.entity";
 
 @Schema({
 	toJSON: { virtuals: true },

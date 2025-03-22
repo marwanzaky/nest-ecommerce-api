@@ -5,7 +5,7 @@ import {
 	UnauthorizedException,
 } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { User } from "src/_entities/user.entity";
+import { User } from "src/users/entities/user.entity";
 import { JwtService } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { SignUpDto } from "./dto/signup.dto";
@@ -15,6 +15,7 @@ import { compare } from "bcrypt";
 import { IRequest } from "src/_interfaces/request.interface";
 import { CartsService } from "src/carts/carts.service";
 import { UsersService } from "src/users/users.service";
+import { UserRole } from "src/_interfaces/user.interface";
 
 @Injectable()
 export class AuthService {
@@ -31,9 +32,9 @@ export class AuthService {
 		return type === "Bearer" ? token : undefined;
 	}
 
-	async createAccessToken(userId: string) {
+	async createAccessToken(userId: string, role: UserRole) {
 		return await this.jwtService.sign(
-			{ id: userId },
+			{ id: userId, role },
 			{
 				secret: this.configService.get("JWT_SECRET"),
 				expiresIn: this.configService.get("JWT_EXPIRES"),
@@ -47,7 +48,7 @@ export class AuthService {
 		const user = await this.usersService.create(name, email, password);
 		await this.cartsService.create(user.id, []);
 
-		return { token: await this.createAccessToken(user.id) };
+		return { token: await this.createAccessToken(user.id, user.role) };
 	}
 
 	async login(loginDto: LoginDto) {
@@ -69,6 +70,6 @@ export class AuthService {
 			throw new UnauthorizedException("Invalid email or password");
 		}
 
-		return { token: await this.createAccessToken(user.id) };
+		return { token: await this.createAccessToken(user.id, user.role) };
 	}
 }

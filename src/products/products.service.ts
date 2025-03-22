@@ -5,9 +5,9 @@ import { UpdateProductDto } from "./dto/update-product.dto";
 
 import mongoose, { Model } from "mongoose";
 
-import { Product } from "../_entities/product.entity";
-import { Review } from "src/_entities/review.entity";
 import { IProduct } from "src/_interfaces/product.interface";
+import { Product } from "./entities/product.entity";
+import { Review } from "src/reviews/entities/review.entity";
 
 @Injectable()
 export class ProductsService {

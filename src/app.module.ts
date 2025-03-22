@@ -10,6 +10,7 @@ import { ProductsModule } from "./products/products.module";
 import { ReviewsModule } from "./reviews/reviews.module";
 import { CartsModule } from "./carts/carts.module";
 import { FavoritesModule } from "./favorites/favorites.module";
+import { RolesGuard } from "./_guards/roles.guard";
 
 @Module({
 	imports: [
@@ -40,6 +41,10 @@ import { FavoritesModule } from "./favorites/favorites.module";
 		{
 			provide: APP_GUARD,
 			useClass: AuthGuard,
+		},
+		{
+			provide: APP_GUARD,
+			useClass: RolesGuard,
 		},
 	],
 })

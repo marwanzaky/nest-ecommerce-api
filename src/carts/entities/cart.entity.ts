@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory, Virtual } from "@nestjs/mongoose";
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import mongoose, { Document } from "mongoose";
 import { ICart } from "src/_interfaces/cart.interface";
-import { User } from "./user.entity";
-import { Product } from "./product.entity";
+import { User } from "../../users/entities/user.entity";
+import { Product } from "src/products/entities/product.entity";
 
 @Schema({
 	timestamps: true,

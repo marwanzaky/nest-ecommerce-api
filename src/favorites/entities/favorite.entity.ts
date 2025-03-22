@@ -3,8 +3,8 @@ import mongoose, { Document } from "mongoose";
 
 import { IFavorite } from "src/_interfaces/favorite.interface";
 
-import { User } from "../../_entities/user.entity";
-import { Product } from "../../_entities/product.entity";
+import { User } from "../../users/entities/user.entity";
+import { Product } from "src/products/entities/product.entity";
 
 @Schema({
 	timestamps: true,
