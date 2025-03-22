@@ -9,6 +9,7 @@ import { JwtService } from "@nestjs/jwt";
 import { ProductsModule } from "./products/products.module";
 import { ReviewsModule } from "./reviews/reviews.module";
 import { CartsModule } from "./carts/carts.module";
+import { FavoritesModule } from "./favorites/favorites.module";
 
 @Module({
 	imports: [
@@ -32,6 +33,7 @@ import { CartsModule } from "./carts/carts.module";
 		ProductsModule,
 		ReviewsModule,
 		CartsModule,
+		FavoritesModule,
 	],
 	providers: [
 		JwtService,

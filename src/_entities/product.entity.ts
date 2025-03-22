@@ -1,10 +1,12 @@
 import { Prop, Schema, SchemaFactory, Virtual } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import mongoose, { Document } from "mongoose";
 import { IProduct } from "src/_interfaces/product.interface";
+import { User } from "./user.entity";
 
 @Schema({
 	toJSON: { virtuals: true },
 	toObject: { virtuals: true },
+	timestamps: true,
 })
 export class Product extends Document implements Omit<IProduct, "_id"> {
 	@Prop({
@@ -53,10 +55,17 @@ export class Product extends Document implements Omit<IProduct, "_id"> {
 	description!: string;
 
 	@Prop({
-		type: Date,
-		default: Date.now(),
+		type: mongoose.Schema.ObjectId,
+		ref: User.name,
+		required: [true, "A product must belong to a user"],
 	})
-	createdAt!: string;
+	user!: mongoose.Schema.Types.ObjectId;
+
+	@Prop({
+		type: Boolean,
+		default: false,
+	})
+	featured!: boolean;
 
 	@Virtual({
 		get: function (this: Product) {

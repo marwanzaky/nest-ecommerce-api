@@ -35,7 +35,7 @@ async function bootstrap() {
 	});
 
 	// Filters
-	app.useGlobalFilters(new MongooseExceptionFilter());
+	// app.useGlobalFilters(new MongooseExceptionFilter());
 
 	await app.listen(process.env.PORT ?? 3001);
 }

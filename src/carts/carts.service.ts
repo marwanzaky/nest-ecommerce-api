@@ -1,8 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 
-import { GetAllCartsDto } from "./dto/get-all-carts.dto";
-
 import mongoose, { Model } from "mongoose";
 
 import { Cart } from "src/_entities/cart.entity";
@@ -94,11 +92,11 @@ export class CartsService {
 		);
 	}
 
-	async find({ user }: { user: string }): Promise<Cart | null> {
+	async findOne({ user }: { user: string }): Promise<Cart | null> {
 		return this.cartModel.findOne({ user });
 	}
 
-	async findAll(dto: GetAllCartsDto): Promise<Cart[]> {
+	async find(): Promise<Cart[]> {
 		return this.cartModel.find();
 	}
 
