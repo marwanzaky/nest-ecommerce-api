@@ -22,10 +22,9 @@ export class FavoritesController {
 		const items = await this.favoritesService.find({ user: request.user.id });
 
 		if (items.length > 0) {
-			return this.productsService.find(
-				{},
-				{ ids: items.map((item) => item.product.toString()) },
-			);
+			return this.productsService.find({
+				query: { ids: items.map((item) => item.product.toString()) },
+			});
 		}
 
 		return [];

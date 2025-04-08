@@ -38,7 +38,9 @@ export class UsersController {
 		summary: "Get all products of the authenticated user",
 	})
 	async getMeProducts(@Req() request: IRequest) {
-		return this.productsService.find({}, { user: request.user.id });
+		return this.productsService.find({
+			query: { user: request.user.id },
+		});
 	}
 
 	@Patch("/updateMe")

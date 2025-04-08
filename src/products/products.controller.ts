@@ -33,25 +33,27 @@ export class ProductsController {
 			sortProperty,
 			sortOrder,
 			searchTerm,
+			excludeIds,
 			minPrice,
 			maxPrice,
 			featured,
 			limit,
 		} = dto;
 
-		return this.productsService.find(
-			{
+		return this.productsService.find({
+			sort: {
 				property: sortProperty,
 				order: sortOrder,
 			},
-			{
+			query: {
 				name: searchTerm,
+				excludeIds,
 				minPrice,
 				maxPrice,
 				featured,
 				limit,
 			},
-		);
+		});
 	}
 
 	@Post()

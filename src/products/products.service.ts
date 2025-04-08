@@ -36,21 +36,24 @@ export class ProductsService {
 		return product.save();
 	}
 
-	async find(
-		sort: {
+	async find(options?: {
+		sort?: {
 			property?: keyof IProduct;
 			order?: "asc" | "desc";
-		},
-		query: {
+		};
+		query?: {
 			ids?: string[];
+			excludeIds?: string[];
 			name?: string;
 			user?: string;
 			minPrice?: number;
 			maxPrice?: number;
 			featured?: boolean;
 			limit?: number;
-		},
-	): Promise<Product[]> {
+		};
+	}): Promise<Product[]> {
+		const { sort = {}, query = {} } = options || {};
+
 		const sortOptions: Record<string, 1 | -1> = {};
 
 		if (sort.property && sort.order) {
@@ -81,6 +84,13 @@ export class ProductsService {
 		if (query.ids && query.ids.length > 0) {
 			filter._id = {
 				$in: query.ids.map((id) => new mongoose.Types.ObjectId(id)),
+			};
+		}
+
+		if (query.excludeIds && query.excludeIds.length > 0) {
+			filter._id = {
+				...filter._id,
+				$nin: query.excludeIds.map((id) => new mongoose.Types.ObjectId(id)),
 			};
 		}
 
