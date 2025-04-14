@@ -1,6 +1,6 @@
 # eCommerce-api
 ## 🖐️ About
-[Website](https://mamolio.vercel.app/) project [api](https://mamolio-api.vercel.app/api/v1/products) is built from the ground up using modern technologies such as Nest.js, and MongoDB / Mongoose.
+[Website](https://mamolio.vercel.app/) project [api](https://nest-mamolio.up.railway.app/api) is built from the ground up using modern technologies such as Nest.js, and MongoDB / Mongoose.
 <div>
   <img src="https://img.shields.io/badge/-Swagger-2c3e50.svg?logo=swagger&style=flat">
   <img src="https://img.shields.io/badge/-TypeScript-2c3e50.svg?logo=typescript&style=flat">
