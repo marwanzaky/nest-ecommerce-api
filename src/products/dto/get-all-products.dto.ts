@@ -7,6 +7,7 @@ import {
 	IsNumber,
 	IsOptional,
 	IsString,
+	Max,
 	Min,
 } from "class-validator";
 import { IProduct } from "src/_interfaces/product.interface";
@@ -59,4 +60,15 @@ export class GetAllProductsDto {
 	@Min(1)
 	@Type(() => Number)
 	readonly limit?: number;
+
+	@ApiPropertyOptional({
+		type: Number,
+		example: 5,
+	})
+	@IsOptional()
+	@IsNumber()
+	@Min(1)
+	@Max(5)
+	@Type(() => Number)
+	readonly avgRatings?: number;
 }

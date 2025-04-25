@@ -38,6 +38,7 @@ export class ProductsController {
 			maxPrice,
 			featured,
 			limit,
+			avgRatings,
 		} = dto;
 
 		return this.productsService.find({
@@ -52,6 +53,7 @@ export class ProductsController {
 				maxPrice,
 				featured,
 				limit,
+				avgRatings,
 			},
 		});
 	}

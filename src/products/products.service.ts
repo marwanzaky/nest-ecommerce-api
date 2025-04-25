@@ -50,6 +50,7 @@ export class ProductsService {
 			maxPrice?: number;
 			featured?: boolean;
 			limit?: number;
+			avgRatings?: number;
 		};
 	}): Promise<Product[]> {
 		const { sort = {}, query = {} } = options || {};
@@ -92,6 +93,10 @@ export class ProductsService {
 				...filter._id,
 				$nin: query.excludeIds.map((id) => new mongoose.Types.ObjectId(id)),
 			};
+		}
+
+		if (query.avgRatings !== undefined) {
+			filter.avgRatings = { $gte: query.avgRatings };
 		}
 
 		const filteredProducts = this.productModel.find(filter).sort(sortOptions);
