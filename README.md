@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/-Nest.js-2c3e50.svg?logo=nestjs&style=flat">
   <img src="https://img.shields.io/badge/-Node.js-2c3e50.svg?logo=node.js&style=flat">
   <img src="https://img.shields.io/badge/-MongoDB-2c3e50.svg?logo=mongodb&style=flat">
+  <img src="https://img.shields.io/badge/-Supabase-2c3e50.svg?logo=supabase&style=flat">
   <img src="https://img.shields.io/badge/-JWT-2c3e50.svg?logo=JSON%20web%20tokens&style=flat">
   <img src="https://img.shields.io/badge/-Stripe-2c3e50.svg?logo=stripe&style=flat">
   <img src="https://img.shields.io/badge/-Docker-2c3e50.svg?logo=docker&style=flat">
