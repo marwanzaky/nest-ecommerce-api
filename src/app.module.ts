@@ -12,6 +12,8 @@ import { CartsModule } from "./carts/carts.module";
 import { FavoritesModule } from "./favorites/favorites.module";
 import { RolesGuard } from "./_guards/roles.guard";
 import { PaymentsModule } from "./payments/payments.module";
+import { MailerModule } from "@nestjs-modules/mailer";
+import { ContactModule } from "./contact/contact.module";
 
 @Module({
 	imports: [
@@ -30,6 +32,16 @@ import { PaymentsModule } from "./payments/payments.module";
 		}),
 
 		// Modules
+		MailerModule.forRoot({
+			transport: {
+				host: process.env.EMAIL_HOST,
+				auth: {
+					user: process.env.EMAIL_USERNAME,
+					pass: process.env.EMAIL_PASSWORD,
+				},
+			},
+		}),
+
 		AuthModule,
 		UsersModule,
 		ProductsModule,
@@ -37,6 +49,7 @@ import { PaymentsModule } from "./payments/payments.module";
 		CartsModule,
 		FavoritesModule,
 		PaymentsModule,
+		ContactModule,
 	],
 	providers: [
 		JwtService,
