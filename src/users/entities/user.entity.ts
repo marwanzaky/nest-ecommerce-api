@@ -4,7 +4,9 @@ import { Document } from "mongoose";
 import { hash } from "bcrypt";
 import { IUser, UserRole } from "src/_interfaces/user.interface";
 
-@Schema()
+@Schema({
+	timestamps: true,
+})
 export class User extends Document implements Omit<IUser, "_id"> {
 	@Prop({ required: true, enum: ["user", "admin"], default: "user" })
 	role!: UserRole;

@@ -11,6 +11,7 @@ import { ReviewsModule } from "./reviews/reviews.module";
 import { CartsModule } from "./carts/carts.module";
 import { FavoritesModule } from "./favorites/favorites.module";
 import { RolesGuard } from "./_guards/roles.guard";
+import { PaymentsModule } from "./payments/payments.module";
 
 @Module({
 	imports: [
@@ -35,6 +36,7 @@ import { RolesGuard } from "./_guards/roles.guard";
 		ReviewsModule,
 		CartsModule,
 		FavoritesModule,
+		PaymentsModule,
 	],
 	providers: [
 		JwtService,
