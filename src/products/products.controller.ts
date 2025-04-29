@@ -17,11 +17,15 @@ import { GetAllProductsDto } from "./dto/get-all-products.dto";
 import { Public } from "src/auth/auth.guard";
 import { IRequest } from "src/_interfaces/request.interface";
 import { ApiBearerAuth, ApiOperation } from "@nestjs/swagger";
+import { SupabaseService } from "src/products/supabase.service";
 
 @Controller("products")
 @ApiBearerAuth("Authorization")
 export class ProductsController {
-	constructor(private readonly productsService: ProductsService) {}
+	constructor(
+		private readonly productsService: ProductsService,
+		private readonly supabaseService: SupabaseService,
+	) {}
 
 	@Get()
 	@Public()
@@ -66,8 +70,30 @@ export class ProductsController {
 		@Req() req: IRequest,
 		@Body() createProductDto: CreateProductDto,
 	) {
-		const { name, price, priceCompare, description, imgUrls } =
-			createProductDto;
+		const {
+			name,
+			price,
+			priceCompare,
+			description,
+			imgUrls: imgBase64s,
+		} = createProductDto;
+
+		const imgUrlPromises = await imgBase64s.map(async (imgBase64) => {
+			const base64 = imgBase64.split("base64,")[1];
+			const fileBuffer = Buffer.from(base64, "base64");
+			const fileName = `product-imgs/${Date.now()}-${Math.random().toString(36).substring(7)}.png`;
+
+			const { imgUrl } = await this.supabaseService.uploadFile(
+				"uploads",
+				fileName,
+				fileBuffer,
+				"image/png",
+			);
+
+			return imgUrl;
+		});
+
+		const imgUrls = await Promise.all(imgUrlPromises);
 
 		return this.productsService.create(
 			name,

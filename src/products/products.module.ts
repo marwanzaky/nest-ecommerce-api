@@ -4,6 +4,7 @@ import { ProductsController } from "./products.controller";
 import { MongooseModule } from "@nestjs/mongoose";
 import { Product, ProductSchema } from "./entities/product.entity";
 import { Review, ReviewSchema } from "src/reviews/entities/review.entity";
+import { SupabaseService } from "./supabase.service";
 
 @Module({
 	imports: [
@@ -11,7 +12,7 @@ import { Review, ReviewSchema } from "src/reviews/entities/review.entity";
 		MongooseModule.forFeature([{ name: Review.name, schema: ReviewSchema }]),
 	],
 	controllers: [ProductsController],
-	providers: [ProductsService],
+	providers: [ProductsService, SupabaseService],
 	exports: [ProductsService],
 })
 export class ProductsModule {}

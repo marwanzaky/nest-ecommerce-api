@@ -24,6 +24,7 @@
 		"@nestjs/passport": "^11.0.5",
 		"@nestjs/platform-express": "^11.0.1",
 		"@nestjs/swagger": "^11.0.3",
+		"@supabase/supabase-js": "^2.49.4",
 		"@types/bcrypt": "^5.0.2",
 		"bcrypt": "^5.1.1",
 		"class-transformer": "^0.5.1",
