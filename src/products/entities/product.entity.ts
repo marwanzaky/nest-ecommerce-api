@@ -55,6 +55,13 @@ export class Product extends Document implements Omit<IProduct, "_id"> {
 	description!: string;
 
 	@Prop({
+		type: [String],
+		required: [true, "A product must have tags"],
+		trim: true,
+	})
+	tags!: string[];
+
+	@Prop({
 		type: mongoose.Schema.ObjectId,
 		ref: User.name,
 		required: [true, "A product must belong to a user"],

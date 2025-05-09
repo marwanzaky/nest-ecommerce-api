@@ -8,5 +8,6 @@ export interface IProduct {
 	numReviews: number;
 	imgUrls: string[];
 	description: string;
+	tags: string[];
 	featured: boolean;
 }

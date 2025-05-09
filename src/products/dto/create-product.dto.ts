@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateProductDto {
 	@ApiProperty()
@@ -23,7 +23,12 @@ export class CreateProductDto {
 	readonly imgUrls!: string[];
 
 	@ApiProperty()
-	@IsString({ each: true })
+	@IsString()
 	@IsNotEmpty()
 	readonly description!: string;
+
+	@ApiProperty()
+	@IsString({ each: true })
+	@IsOptional()
+	readonly tags?: string[];
 }

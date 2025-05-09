@@ -26,4 +26,9 @@ export class UpdateProductDto {
 	@IsString()
 	@IsOptional()
 	readonly description?: string;
+
+	@ApiProperty()
+	@IsString({ each: true })
+	@IsOptional()
+	readonly tags?: string[];
 }

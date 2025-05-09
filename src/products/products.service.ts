@@ -22,6 +22,7 @@ export class ProductsService {
 		priceCompare: number,
 		imgUrls: string[],
 		description: string,
+		tags: string[],
 		user: string,
 	): Promise<Product> {
 		const product = await this.productModel.create({
@@ -30,6 +31,7 @@ export class ProductsService {
 			priceCompare,
 			imgUrls,
 			description,
+			tags,
 			user,
 		});
 

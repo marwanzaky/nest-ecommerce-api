@@ -76,6 +76,7 @@ export class ProductsController {
 			priceCompare,
 			description,
 			imgUrls: imgBase64s,
+			tags,
 		} = createProductDto;
 
 		const imgUrlPromises = await imgBase64s.map(async (imgBase64) => {
@@ -101,6 +102,7 @@ export class ProductsController {
 			priceCompare,
 			imgUrls,
 			description,
+			tags || [],
 			req.user.id,
 		);
 	}
